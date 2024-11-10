@@ -25,10 +25,10 @@ export default async function DashboardLayout ({children , params} : {
     }
 
     return (
-        <>
+        <div className="flex px-4 py-6">
             <Navbar/>
             {children}
-        </>
+        </div>
     )
 
 }

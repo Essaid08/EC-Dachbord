@@ -2,21 +2,37 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { CellActions } from "./cell-action"
 
+
 export type ProductColumn = {
     id: string
     name: string
     price: string
-    size: string
+    sizes: string[]
     category: string
-    color: string
+    colors: string[]
     isFeatured: boolean
     isArchived: boolean
-    cratedAt: string
+    stock: number
+    createdAt: string
 }
+
+
 export const columns: ColumnDef<ProductColumn>[] = [
     {
         accessorKey: "name",
         header: "Name",
+    },
+    {
+        accessorKey: "category",
+        header: "Category",
+    },
+    {
+        accessorKey: "price",
+        header: "Price",
+    },
+    {
+        accessorKey: "stock",
+        header: "Stock",
     },
     {
         accessorKey: "isArchived",
@@ -27,27 +43,30 @@ export const columns: ColumnDef<ProductColumn>[] = [
         header: "Featured",
     },
     {
-        accessorKey: "price",
-        header: "Price",
+        accessorKey: "sizes",
+        header: "Sizes",
+        cell: ({ row }) => (
+            <div className="grid items-center gap-x-2 gap-y-3 grid-cols-3">
+                {row.original.sizes.map(size => (
+                    <span key={size} className="px-1 py-1 bg-gray-200 rounded flex items-center justify-center font-semibold" >
+                        {size}
+                    </span>
+                ))}
+            </div>
+        )
     },
     {
-        accessorKey: "category",
-        header: "Category",
-    },
-    {
-        accessorKey: "size",
-        header: "Size",
-    },
-    {
-        accessorKey: "color",
+        accessorKey: "colors",
         header: "Colors",
         cell: ({ row }) => (
-            <div className="flex items-center gap-x-2">
-                {row.original.color}
-                <div
-                    className="h-6 w-6 rounded-full border"
-                    style={{backgroundColor : row.original.color}}
-                />
+            <div className="grid items-center gap-x-2 grid-cols-3 gap-y-3">
+                {row.original.colors.map(clr => (
+                    <div
+                        key={clr}
+                        className="h-6 w-6 rounded-full border"
+                        style={{ backgroundColor: clr }}
+                    />
+                ))}
             </div>
         )
     },
@@ -59,4 +78,4 @@ export const columns: ColumnDef<ProductColumn>[] = [
         id: 'actions',
         cell: ({ row }) => <CellActions data={row.original} />
     }
-]
+];

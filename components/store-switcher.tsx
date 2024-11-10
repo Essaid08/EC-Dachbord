@@ -50,9 +50,9 @@ const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
                     role="combobox"
                     aria-expanded={open}
                     aria-label="Select a store"
-                    className={cn('w-[200px] justify-between')}
+                    className={cn('w-[200px] justify-between py-2')}
                 >
-                    <StoreIcon className="mr-2 h-4 w-4" />
+                    <StoreIcon className="mr-2 h-5 w-5" />
                     {currentStore?.label}
                     <ChevronsUpDown className=" ml-auto h-4 w-4 shrink-0 opacity-50" />
                 </Button>
@@ -66,8 +66,8 @@ const StoreSwitcher = ({ className, items = [] }: StoreSwitcherProps) => {
                             {formattedItems.map((store) => (
                                 <div key={store.value} onClick={() => onStoreSelect(store)}>
                                     <CommandItem
-                                        //key={store.value}
-                                        //onSelect={() => onStoreSelect(store)}
+                                        key={store.value}
+                                        onSelect={() => onStoreSelect(store)}
                                         className="text-sm"
                                     >
                                         <StoreIcon className="mr-2 h-4 w-4" />

@@ -6,7 +6,7 @@ import StoreSwitcher from "@/components/store-switcher"
 import prismadb from "@/lib/prismadb"
 
 const Navbar = async() => {
-    const {userId} = auth()
+    const {userId , user} = auth()
     
     if(!userId) {
         redirect('/sign-in')
@@ -19,12 +19,15 @@ const Navbar = async() => {
     })
 
     return (
-        <div className=" border-b">
-            <div className="flex h-16 items-center px-4">
+        <div className="border-r border-gray-300">
+            <div className="flex flex-col border-black h-16 items-center px-3">
                 <StoreSwitcher items={stores}/>
                 <MainNav className="mx-6"/>
-                <div className="ml-auto flex items-center space-x-4">
+                <div className=" border-gray-300 border-y py-4 w-full flex items-center justify-center space-x-4">
                     <UserButton afterSignOutUrl="/"/>
+                    <p className="text-black">
+                        {user?.firstName}
+                    </p>
                 </div>
             </div>
         </div>

@@ -47,10 +47,10 @@ export const MainNav = ({ className, ...props }: React.HTMLAttributes<HTMLElemen
     ]
 
     return (
-        <nav className={cn('flex items-center space-x-4 lg:skew-x-6', className)}>
+        <nav className={cn('flex flex-col items-center space-y-6 justify-center my-11', className)}>
             {routes.map(route => (
                 <Link
-                    className={cn(' text-sm font-medium transition-colors hover:text-primary',
+                    className={cn(' text-sm font-semibold transition-colors hover:text-primary',
                         route.active ? 'text-black dark:text-white' : 'text-muted-foreground')}
                     href={route.href}
                     key={route.href}
